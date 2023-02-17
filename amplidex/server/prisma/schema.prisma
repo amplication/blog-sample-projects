@@ -1,0 +1,49 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Generation {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  monsters  Monster[]
+  name      String    @unique
+  updatedAt DateTime  @updatedAt
+}
+
+model Monster {
+  biology      String
+  createdAt    DateTime   @default(now())
+  dexNumber    Int        @unique
+  generation   Generation @relation(fields: [generationId], references: [id])
+  generationId String
+  id           String     @id @default(cuid())
+  image        String
+  name         String     @unique
+  typing       Typing[]
+  updatedAt    DateTime   @updatedAt
+  url          String     @unique
+}
+
+model Typing {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  monsters  Monster[]
+  name      String    @unique
+  updatedAt DateTime  @updatedAt
+}
