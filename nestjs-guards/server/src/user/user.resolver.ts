@@ -6,8 +6,9 @@ import * as common from "@nestjs/common";
 import { UserResolverBase } from "./base/user.resolver.base";
 import { User } from "./base/User";
 import { UserService } from "./user.service";
+import { IsAdminGuard } from "./is-admin.guard";
 
-@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
+@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard, IsAdminGuard)
 @graphql.Resolver(() => User)
 export class UserResolver extends UserResolverBase {
   constructor(
