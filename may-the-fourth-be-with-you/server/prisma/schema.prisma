@@ -1,0 +1,136 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Person {
+  birthYear   String?
+  createdAt   DateTime   @default(now())
+  description String?
+  eyeColor    String?
+  films       Film[]
+  gender      String?
+  hairColor   String?
+  height      Int?
+  id          String     @id @default(cuid())
+  mass        Float?
+  name        String?
+  planet      Planet?    @relation(fields: [planetId], references: [id])
+  planetId    String?
+  races       Race[]
+  skinColor   String?
+  starships   Starship[]
+  updatedAt   DateTime   @updatedAt
+  vehicles    Vehicle[]
+}
+
+model Starship {
+  cargoCapacity        Float?
+  consumables          String?
+  costInCredits        Float?
+  createdAt            DateTime @default(now())
+  crew                 String?
+  description          String?
+  films                Film[]
+  hyperdriveRating     Float?
+  id                   String   @id @default(cuid())
+  length               Float?
+  manufacturer         Json?
+  maxAtmospheringSpeed Int?
+  mglt                 Int?
+  model                String?
+  name                 String?
+  passengers           String?
+  person               Person[]
+  starshipClass        String?
+  updatedAt            DateTime @updatedAt
+}
+
+model Vehicle {
+  cargoCapacity        Float?
+  consumables          String?
+  costInCredits        Float?
+  createdAt            DateTime @default(now())
+  crew                 String?
+  description          String?
+  films                Film[]
+  id                   String   @id @default(cuid())
+  length               Float?
+  manufacturer         Json?
+  maxAtmospheringSpeed Int?
+  model                String?
+  name                 String?
+  passengers           String?
+  person               Person[]
+  updatedAt            DateTime @updatedAt
+  vehicleClass         String?
+}
+
+model Race {
+  averageHeight   Float?
+  averageLifespan Int?
+  classification  String?
+  createdAt       DateTime @default(now())
+  description     String?
+  designation     String?
+  eyeColors       Json?
+  films           Film[]
+  hairColors      Json?
+  id              String   @id @default(cuid())
+  language        String?
+  name            String?
+  person          Person[]
+  skinColors      Json?
+  updatedAt       DateTime @updatedAt
+}
+
+model Planet {
+  climates       Json?
+  createdAt      DateTime @default(now())
+  description    String?
+  diameter       Int?
+  films          Film[]
+  gravity        String?
+  id             String   @id @default(cuid())
+  name           String?
+  orbitalPeriod  Int?
+  people         Person[]
+  population     Float?
+  rotationPeriod Int?
+  surfaceWater   Float?
+  terrains       Json?
+  updatedAt      DateTime @updatedAt
+}
+
+model Film {
+  createdAt    DateTime   @default(now())
+  description  String?
+  director     String?
+  episodeId    Int?
+  id           String     @id @default(cuid())
+  openingCrawl String?
+  person       Person[]
+  planet       Planet[]
+  producers    Json?
+  race         Race[]
+  releaseDate  DateTime?
+  starship     Starship[]
+  title        String?
+  updatedAt    DateTime   @updatedAt
+  vehicle      Vehicle[]
+}
