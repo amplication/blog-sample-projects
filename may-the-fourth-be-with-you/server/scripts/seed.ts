@@ -10,6 +10,11 @@ if (require.main === module) {
   if (!BCRYPT_SALT) {
     throw new Error("BCRYPT_SALT environment variable must be defined");
   }
+  
+  seed().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
 }
 
 async function seed() {

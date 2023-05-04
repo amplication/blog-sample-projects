@@ -16,7 +16,8 @@
     "docker:db": "docker-compose -f docker-compose.db.yml up -d",
     "docker:build": "docker build .",
     "compose:up": "docker-compose up -d",
-    "compose:down": "docker-compose down --volumes"
+    "compose:down": "docker-compose down --volumes",
+    "download": "ts-node scripts/download.ts scripts/data.json"
   },
   "dependencies": {
     "@nestjs/common": "8.4.7",
@@ -52,8 +53,12 @@
     "@types/normalize-path": "3.0.0",
     "@types/supertest": "2.0.11",
     "@types/validator": "^13.7.15",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "isomorphic-unfetch": "^4.0.2",
     "jest": "27.0.6",
     "jest-mock-extended": "^2.0.4",
+    "openai": "^3.2.1",
     "prisma": "4.6.1",
     "supertest": "4.0.2",
     "ts-jest": "27.0.3",
@@ -63,6 +68,8 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "modulePathIgnorePatterns": ["<rootDir>/dist/"]
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
   }
 }
