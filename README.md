@@ -2,6 +2,9 @@
 
 Source code for projects showcased on the Amplication blog!
 
+- Code Your Way to Seals
+  - [Blog Post](https://amplication.com/blog/code-your-way-to-seals)
+  - [Source Code](./seal-of-the-day)
 - May the Fourth Be With You
   - [Blog Post](https://amplication.com/blog/may-the-fourth-be-with-you)
   - [Source Code](./may-the-fourth-be-with-you)
