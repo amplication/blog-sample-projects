@@ -33,6 +33,7 @@
     "class-validator": "0.13.2",
     "graphql": "15.7.2",
     "graphql-type-json": "0.3.2",
+    "hbs": "^4.2.0",
     "nest-access-control": "2.0.3",
     "nest-morgan": "1.0.1",
     "nestjs-prisma": "0.19.0",
@@ -63,6 +64,8 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "modulePathIgnorePatterns": ["<rootDir>/dist/"]
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
   }
 }
